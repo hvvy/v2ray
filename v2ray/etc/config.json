@@ -59,35 +59,33 @@
     }
   }],
   // List of outbound proxy configurations.
-  "outbounds": [{
-    // Replace your proxy protocol in this section, like: vmess or shadowsocks
-    "protocol": "freedom",
-
-    // Settings of the protocol. Varies based on protocol.
-    "settings": {},
-
-    // Tag of the outbound. May be used for routing.
-    "tag": "proxy"
-  },{
-    // Protocol name of the outbound proxy.
-    "protocol": "freedom",
-
-    // Settings of the protocol. Varies based on protocol.
-    "settings": {},
-
-    // Tag of the outbound. May be used for routing.
-    "tag": "direct"
-  },{
-    // DNS Proxy Outbond
-    "protocol": "dns",
-
-    // Tag of the outbound for DNS proxy routing.
-    "tag": "dns-out"
-  },{
-    "protocol": "blackhole",
-    "settings": {},
-    "tag": "blocked"
-  }],
+  "outbounds": [
+    {
+      "protocol": "vmess",
+      "settings": {
+        "vnext": [
+          {
+            "address": "a.yourdomain.com",
+            "port": 443,
+            "users": [
+              {
+                "id": "4e0f9136-5ea8-462c-bce9-7dd75376d378",
+                "alterId": 64
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "ws",
+        "security": "tls",
+        "security": "none",
+        "wsSettings": {
+          "path": "/ray"
+        }
+      }
+    }
+  ],
 
   // Transport is for global transport settings. If you have multiple transports with same settings
   // (say mKCP), you may put it here, instead of in each individual inbound/outbounds.
